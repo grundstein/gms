@@ -8,7 +8,7 @@ const args = {
   options: [
     ['--help', '-help', 'help', '--h', '-h'],
     // ['--watch', '-w'],
-    ['--dir', '--public', '--public-dir', '-p'],
+    ['--dir', '-d'],
     ['--host', '-h'],
     ['--port', '-p'],
   ],
@@ -17,7 +17,7 @@ const args = {
     '--host': '127.0.0.1',
     '--port': 8080,
   },
-  single: ['--dir', '--host', '--port', '--no-Api', '--no-Files'],
+  single: ['--dir', '--host', '--port'],
   help: {
     name: 'gms: grundstein magic server',
     header: 'serves prebuilt magic pages.',
