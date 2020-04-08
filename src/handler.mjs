@@ -1,8 +1,4 @@
-import URL from 'url'
-
-import mimes from '@magic/mime-types'
 import log from '@magic/log'
-import is from '@magic/types'
 
 import { lib } from '@grundstein/commons'
 
