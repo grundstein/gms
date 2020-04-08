@@ -33,8 +33,7 @@
   "dependencies": {
     "@grundstein/commons": "github:grundstein/commons",
     "@grundstein/file-store": "github:grundstein/file-store",
-    "@magic/cli": "0.0.23",
-    "@magic/types": "0.1.11"
+    "@magic/cli": "0.0.23"
   },
   "devDependencies": {
     "@magic/format": "0.0.7",
