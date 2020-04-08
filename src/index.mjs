@@ -10,11 +10,7 @@ import { handler as defaultHandler } from './handler.mjs'
 export const run = async (config = {}) => {
   const startTime = log.hrtime()
 
-  const {
-    args = {},
-    handler = defaultHandler,
-    fileStore = defaultStore,
-  } = config
+  const { args = {}, handler = defaultHandler, fileStore = defaultStore } = config
 
   const { port = 23230, host = '127.0.0.1', dir = 'static/public' } = args
 
