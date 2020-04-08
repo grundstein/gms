@@ -34,10 +34,6 @@
     "@grundstein/commons": "github:grundstein/commons",
     "@grundstein/file-store": "github:grundstein/file-store",
     "@magic/cli": "0.0.23",
-    "@magic/deep": "0.1.2",
-    "@magic/fs": "0.0.5",
-    "@magic/log": "0.1.4",
-    "@magic/mime-types": "0.0.2",
     "@magic/types": "0.1.11"
   },
   "devDependencies": {
