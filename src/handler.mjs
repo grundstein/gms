@@ -4,7 +4,9 @@ import mimes from '@magic/mime-types'
 import log from '@magic/log'
 import is from '@magic/types'
 
-import { formatLog, getFileEncoding, getRandomId, respond, sendFile } from './lib/index.mjs'
+import { lib } from '@grundstein/commons'
+
+const { formatLog, getFileEncoding, getRandomId, respond, sendFile } = lib
 
 export const handler = store => async (req, res) => {
   // assign random id to make this call traceable in logs.

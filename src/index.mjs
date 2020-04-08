@@ -1,10 +1,10 @@
 import http from 'http'
 
-import log from '@magic/log'
+import { log } from '@grundstein/commons'
 
 import defaultStore from '@grundstein/file-store'
 
-import { initStore } from './init/index.mjs'
+import { initStore } from './store.mjs'
 import { handler as defaultHandler } from './handler.mjs'
 
 export const run = async (config = {}) => {
