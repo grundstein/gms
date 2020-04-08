@@ -33,6 +33,7 @@
   "dependencies": {
     "@grundstein/commons": "github:grundstein/commons",
     "@grundstein/file-store": "github:grundstein/file-store",
+    "@grundstein/gps": "github:grundstein/gps",
     "@magic/cli": "0.0.24"
   },
   "devDependencies": {
