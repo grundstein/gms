@@ -2,15 +2,13 @@ import log from '@magic/log'
 
 import { lib } from '@grundstein/commons'
 
-const { formatLog, getFileEncoding, getRandomId, respond, sendFile } = lib
+const { formatLog, respond, sendFile } = lib
 
 export const handler = store => async (req, res) => {
-  // assign random id to make this call traceable in logs.
-  req.id = await getRandomId()
-
-  req.headers['x-forwarded-for'] = req.id
-
   const startTime = log.hrtime()
+
+  req = await lib.enhanceRequest(req)
+
 
   let { url } = req
   if (url.endsWith('/')) {
