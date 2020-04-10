@@ -35,6 +35,6 @@ gms --dir /api --host grundstein.it --port 2323
   },
 }
 
-const res = cli(opts.args)
+const { args } = cli(opts)
 
-run(res)
+run(args)
