@@ -7,16 +7,12 @@ import defaultStore from '@grundstein/file-store'
 import { initStore } from './store.mjs'
 import { handler as defaultHandler } from './handler.mjs'
 
-import gps from '@grundstein/gps'
-
 export const run = async (config = {}) => {
   const startTime = log.hrtime()
 
   const { args = {}, handler = defaultHandler, fileStore = defaultStore } = config
 
-  const { dir = 'public' } = args
-
-  const { host, port } = gps.gms
+  const { host = '127.0.0.1', port = '2350', dir = 'public' } = args
 
   try {
     const store = await initStore(dir, fileStore)
