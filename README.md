@@ -2,13 +2,13 @@
 
 ### WIP. NOT IN PRODUCTION YET!
 
-gms = grundstein magic server
+gms: grundstein magic server
 
 serves a local directory (process.cwd() + 'public' is the default)
 
 only serves favicon.ico, js, css, html and txt files in that directory,
-all other files will be served by the [gss](https://grundstein.it/gss) - grundstein static server
-- instead
+all other files will be served by the [gss](https://grundstein.it/gss): grundstein static server
+instead
 
 #### installation
 ```bash
@@ -27,5 +27,5 @@ gms
 gms --dir /global/directory/path
 
 // serve on specific port with specific host
-grundstein-server --port 2323 --host example.com
+gms --port 2323 --host example.com
 ```
