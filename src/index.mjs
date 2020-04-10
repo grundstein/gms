@@ -10,9 +10,7 @@ import { handler } from './handler.mjs'
 export const run = async (config = {}) => {
   const startTime = log.hrtime()
 
-  const { args = {} } = config
-
-  const { dir = 'public', host = '127.0.0.1', port = '2350' } = args
+  const { dir = 'public', host = '127.0.0.1', port = '2350' } = config
 
   try {
     const store = await initStore(dir, fileStore)
