@@ -12,7 +12,7 @@ export const run = async (config = {}) => {
 
   const { args = {} } = config
 
-  const { host = '127.0.0.1', port = '2350', dir = 'public' } = args
+  const { dir = 'public', host = '127.0.0.1', port = '2350' } = args
 
   try {
     const store = await initStore(dir, fileStore)
