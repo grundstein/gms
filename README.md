@@ -1,14 +1,18 @@
 ## @grundstein/gms
 
-### WIP. NOT IN PRODUCTION YET!
+### WIP. NOT IN PRODUCTION, TESTED AND/OR BENCHMARKED YET!
 
-gms: grundstein magic server
+## gms: grundstein magic server
+
+### features:
+
+#### static page serving
 
 serves a local directory (process.cwd() + 'public' is the default)
 
-only serves favicon.ico, js, css, html and txt files in that directory,
-all other files will be served by the [gss](https://grundstein.it/gss): grundstein static server
-instead
+#### index.html directory alias
+
+requests to `/dir/` get answered by sending `/dir/index.html` back, if it exists.
 
 #### installation
 ```bash
@@ -23,9 +27,9 @@ gms --help
 // serve the ./public directory
 gms
 
-// serve specific directories
+// serve specific directory
 gms --dir /global/directory/path
 
-// serve on specific port with specific host
-gms --port 2323 --host example.com
+// serve on specific host and port
+gms --host grundstein.it --port 2323
 ```
