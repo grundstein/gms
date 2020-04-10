@@ -7,7 +7,6 @@ import run from './index.mjs'
 const args = {
   options: [
     ['--help', '-help', 'help', '--h', '-h'],
-    // ['--watch', '-w'],
     ['--dir', '-d'],
   ],
   default: {
@@ -16,7 +15,7 @@ const args = {
   single: ['--dir'],
   help: {
     name: 'gms: grundstein magic server',
-    header: 'serves prebuilt magic css, js, html, txt and favicon.ico files.',
+    header: 'serves static pages from memory.',
     options: {
       '--dir': 'root for both api and static directories',
     },
