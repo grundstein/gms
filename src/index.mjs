@@ -1,21 +1,19 @@
 import http from 'http'
 
-import { log, middleware } from '@grundstein/commons'
+import { log } from '@grundstein/commons'
 
-import fileStore from '@grundstein/file-store'
+import middleware from '@grundstein/commons/middleware.mjs'
 
-import { initStore } from './store.mjs'
-import { handler } from './handler.mjs'
+import handler from './handler.mjs'
 
 export const run = async (config = {}) => {
-  const startTime = log.hrtime()
-
-  const { dir = 'public', host = '127.0.0.1', port = '2350' } = config
-
   try {
-    const store = await initStore(dir, fileStore)
+    const startTime = log.hrtime()
 
-    const server = http.createServer(handler(store))
+    const { dir = 'public', host = '127.0.0.1', port = 2350 } = config
+
+    const worker = await handler(dir)
+    const server = http.createServer(worker)
 
     const clientError = middleware.clientError({ host, port, startTime })
     server.on('clientError', clientError)
