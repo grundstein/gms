@@ -1,31 +1,54 @@
 import log from '@magic/log'
 
-import { lib } from '@grundstein/commons'
+import { enhanceRequest, formatLog, getHostname, isSendableFile, respond, sendFile } from '@grundstein/commons/src/lib/index.mjs'
 
-const { formatLog, respond, sendFile } = lib
+import { initStore } from './store.mjs'
 
-export const handler = store => async (req, res) => {
-  const startTime = log.hrtime()
+const storeRefreshTime = 5000
 
-  req = await lib.enhanceRequest(req)
+export const handler = async dir => {
+  let store = await initStore(dir)
 
+  let lastRefresh = new Date().getTime()
 
-  let { url } = req
-  if (url.endsWith('/')) {
-    url = `${url}index.html`
-  }
+  return async (req, res) => {
+    const startTime = log.hrtime()
 
-  if (store) {
+    req = await enhanceRequest(req)
+
+    const hostname = getHostname(req).split(':')[0]
+
+    let { url } = req
+    url = url.split('?')[0]
+    if (url.endsWith('/')) {
+      url = `${url}index.html`
+    }
+
+    url = `/${hostname}${url}`
+
     const file = store.get(url)
 
-    if (file) {
-      sendFile(req, res, file)
-      formatLog(req, res, startTime, 'static')
-      return
+    if (isSendableFile(file)) {
+      sendFile(req, res, { file, code: 200, type: 'static' })
+    } else {
+      const file404 = store.get(url)
+
+      if (isSendableFile(file404)) {
+        // custom 404 file
+        sendFile(req, res, { file: file404, code: 404, type: '404' })
+      } else {
+        // default 404 response
+        respond(req, res, { body: '404 - not found.', code: 404 })
+      }
+    }
+
+    const currentTime = new Date().getTime();
+    if (currentTime > lastRefresh + 5000) {
+      console.log('refresh store')
+      store = await initStore(dir)
+      lastRefresh = currentTime
     }
   }
-
-  respond(res, { body: '404 - not found.', code: 404 })
-
-  formatLog(req, res, startTime, 404)
 }
+
+export default handler
