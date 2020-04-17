@@ -1,6 +1,13 @@
 import log from '@magic/log'
 
-import { enhanceRequest, formatLog, getHostname, isSendableFile, respond, sendFile } from '@grundstein/commons/src/lib/index.mjs'
+import {
+  enhanceRequest,
+  formatLog,
+  getHostname,
+  isSendableFile,
+  respond,
+  sendFile,
+} from '@grundstein/commons/src/lib/index.mjs'
 
 import { initStore } from './store.mjs'
 
@@ -17,6 +24,8 @@ export const handler = async dir => {
     req = await enhanceRequest(req)
 
     const hostname = getHostname(req).split(':')[0]
+
+    formatLog(req, res, { time: startTime, type: `gms: request host ${hostname}` })
 
     let { url } = req
     url = url.split('?')[0]
@@ -42,9 +51,9 @@ export const handler = async dir => {
       }
     }
 
-    const currentTime = new Date().getTime();
+    const currentTime = new Date().getTime()
     if (currentTime > lastRefresh + 5000) {
-      console.log('refresh store')
+      formatLog(req, res, { time: startTime, type: 'gms: refresh store' })
       store = await initStore(dir)
       lastRefresh = currentTime
     }
