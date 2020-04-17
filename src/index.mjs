@@ -19,7 +19,7 @@ export const run = async (config = {}) => {
     server.on('clientError', clientError)
 
     const listener = middleware.listener({ host, port, startTime })
-    server.listen(port, host, listener)
+    server.listen(port, listener)
   } catch (e) {
     log.error(e)
     process.exit(1)
