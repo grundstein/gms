@@ -12,7 +12,7 @@ const opts = {
     ['--port', '-p'],
   ],
   default: {
-    '--dir': 'public',
+    '--dir': '/var/www/html',
     '--host': '0.0.0.0',
     '--port': 2350,
   },
@@ -21,7 +21,7 @@ const opts = {
     name: 'gms: grundstein magic server',
     header: 'serves static pages from memory.',
     options: {
-      '--dir': 'root for both api and static directories',
+      '--dir': 'root for both api and static directories, default: /var/www/html',
       '--host': 'hostname to listen to, default 0.0.0.0',
       '--port': 'port, default 2350',
     },

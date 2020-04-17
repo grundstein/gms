@@ -10,7 +10,7 @@ export const run = async (config = {}) => {
   try {
     const startTime = log.hrtime()
 
-    const { dir = 'public', host = '0.0.0.0', port = 2350 } = config
+    const { dir = '/var/www/html', host = '0.0.0.0', port = 2350 } = config
 
     const worker = await handler(dir)
     const server = http.createServer(worker)
