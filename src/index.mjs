@@ -10,7 +10,7 @@ export const run = async (config = {}) => {
   try {
     const startTime = log.hrtime()
 
-    const { dir = 'public', host = '127.0.0.1', port = 2350 } = config
+    const { dir = 'public', host = '0.0.0.0', port = 2350 } = config
 
     const worker = await handler(dir)
     const server = http.createServer(worker)
@@ -19,7 +19,7 @@ export const run = async (config = {}) => {
     server.on('clientError', clientError)
 
     const listener = middleware.listener({ host, port, startTime })
-    server.listen(port, listener)
+    server.listen(port, host, listener)
   } catch (e) {
     log.error(e)
     process.exit(1)

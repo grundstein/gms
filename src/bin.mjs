@@ -13,7 +13,7 @@ const opts = {
   ],
   default: {
     '--dir': 'public',
-    '--host': '127.0.0.1',
+    '--host': '0.0.0.0',
     '--port': 2350,
   },
   single: ['--dir', '--host', '--port'],
@@ -22,7 +22,7 @@ const opts = {
     header: 'serves static pages from memory.',
     options: {
       '--dir': 'root for both api and static directories',
-      '--host': 'hostname to listen to, default 127.0.0.1',
+      '--host': 'hostname to listen to, default 0.0.0.0',
       '--port': 'port, default 2350',
     },
     example: `
