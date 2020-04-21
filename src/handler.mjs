@@ -7,14 +7,14 @@ import {
   isSendableFile,
   respond,
   sendFile,
-} from '@grundstein/commons/src/lib/index.mjs'
+} from '@grundstein/commons/lib.mjs'
 
-import { initStore } from './store.mjs'
+import fileStore from '@grundstein/file-store'
 
-const storeRefreshTime = 5000
+const cacheRefreshDelay = 5000
 
 export const handler = async dir => {
-  let store = await initStore(dir)
+  let store = await fileStore(dir)
 
   let lastRefresh = new Date().getTime()
 
@@ -52,9 +52,9 @@ export const handler = async dir => {
     }
 
     const currentTime = new Date().getTime()
-    if (currentTime > lastRefresh + 5000) {
+    if (currentTime > lastRefresh + cacheRefreshDelay) {
       formatLog(req, res, { time: startTime, type: 'gms: refresh store' })
-      store = await initStore(dir)
+      store = await fileStore(dir)
       lastRefresh = currentTime
     }
   }
