@@ -23,7 +23,10 @@ export const handler = async dir => {
 
     req = await enhanceRequest(req)
 
-    const hostname = getHostname(req).split(':')[0]
+    let hostname = getHostname(req)
+    if (hostname.includes(':')) {
+      hostname = hostname.split(':')[0]
+    }
 
     formatLog(req, res, { time: startTime, type: `gms: request host ${hostname}` })
 
