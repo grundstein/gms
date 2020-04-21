@@ -1,8 +1,6 @@
 import http from 'http'
 
-import { log } from '@grundstein/commons'
-
-import middleware from '@grundstein/commons/middleware.mjs'
+import { log, middleware } from '@grundstein/commons'
 
 import handler from './handler.mjs'
 
