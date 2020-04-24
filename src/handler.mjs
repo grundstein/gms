@@ -1,4 +1,4 @@
-import log from '@magic/log'
+import { log } from '@grundstein/commons'
 
 import {
   enhanceRequest,
