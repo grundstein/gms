@@ -18,10 +18,12 @@ export const run = async (config = {}) => {
 
     const keyFile = path.join(certDir, 'private', `${host}.key.pem`)
     const certFile = path.join(certDir, 'certs', `${host}.cert.pem`)
+    const caCertFile = path.join(certDir, 'certs', 'intermediate.cert.pem');
 
     const options = {
       key: await fs.readFile(keyFile),
       cert: await fs.readFile(certFile),
+      ca: await fs.readFile(caCertFile),
     }
 
     const worker = await handler(dir)
