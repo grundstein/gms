@@ -9,17 +9,17 @@ import handler from './handler.mjs'
 
 export const run = async (config = {}) => {
   try {
-    const startTime = log.hrtime()
+    config.startTime = log.hrtime()
 
     const options = await getHostCertificates(config)
 
-    const worker = await handler(config.dir)
+    const worker = await handler(config)
     const server = https.createServer(options, worker)
 
-    const clientError = middleware.clientError({ ...config, startTime })
+    const clientError = middleware.clientError(config)
     server.on('clientError', clientError)
 
-    const listener = middleware.listener({ ...config, startTime })
+    const listener = middleware.listener(config)
     server.listen(config.port, config.host, listener)
   } catch (e) {
     log.error(e)

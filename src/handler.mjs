@@ -13,7 +13,9 @@ import fileStore from '@grundstein/file-store'
 
 const cacheRefreshDelay = 5000
 
-export const handler = async dir => {
+export const handler = async config => {
+  const { dir } = config
+
   let store = await fileStore(dir)
 
   let lastRefresh = new Date().getTime()
