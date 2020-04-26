@@ -16,7 +16,7 @@ const opts = {
     '--dir': '/var/www/html',
     '--host': 'gms.grund.stein',
     '--port': 2350,
-    '--cert-dir': '~/ca',
+    '--cert-dir': '/home/grundstein/ca',
   },
   single: ['--dir', '--host', '--port', '--cert-dir'],
   help: {
