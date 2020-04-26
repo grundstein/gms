@@ -10,20 +10,23 @@ const opts = {
     ['--dir', '-d'],
     ['--host', '-n'],
     ['--port', '-p'],
+    ['--cert-dir', '--cert', '-c'],
   ],
   default: {
     '--dir': '/var/www/html',
-    '--host': '0.0.0.0',
+    '--host': 'gms.grund.stein',
     '--port': 2350,
+    '--cert-dir': '/root/ca/intermediate',
   },
-  single: ['--dir', '--host', '--port'],
+  single: ['--dir', '--host', '--port', '--cert-dir'],
   help: {
     name: 'gms: grundstein magic server',
     header: 'serves static pages from memory.',
     options: {
       '--dir': 'root for both api and static directories, default: /var/www/html',
-      '--host': 'hostname to listen to, default 0.0.0.0',
-      '--port': 'port, default 2350',
+      '--host': 'hostname to listen to, default: gms.grund.stein',
+      '--port': 'port, default: 2350',
+      '--cert-dir': 'directory with certificates, default: /root/ca/intermediate'
     },
     example: `
 # serve files in ./api:
