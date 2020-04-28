@@ -23,11 +23,9 @@ export const handler = async config => {
   return async (req, res) => {
     const startTime = log.hrtime()
 
-    console.log(req.headers)
-
     req = enhanceRequest(req)
 
-    const hostname = getHostname(req)
+    const hostname = req.headers['X-Forwarded-For']
 
     formatLog(req, res, { time: startTime, type: `gms: request host ${hostname}` })
 
