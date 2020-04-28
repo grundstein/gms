@@ -20,7 +20,7 @@ export const handler = async config => {
 
   let lastRefresh = new Date().getTime()
 
-  return (req, res) => {
+  return async (req, res) => {
     const startTime = log.hrtime()
 
     console.log(req.headers)
