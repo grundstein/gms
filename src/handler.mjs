@@ -20,10 +20,12 @@ export const handler = async config => {
 
   let lastRefresh = new Date().getTime()
 
-  return async (req, res) => {
+  return (req, res) => {
     const startTime = log.hrtime()
 
-    req = await enhanceRequest(req)
+    console.log(req.headers)
+
+    req = enhanceRequest(req)
 
     const hostname = getHostname(req)
 
