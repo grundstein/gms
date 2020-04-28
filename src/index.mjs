@@ -1,9 +1,6 @@
-import http from 'http'
-import path from 'path'
+import { log } from '@grundstein/commons'
 
-import { fs, log, middleware } from '@grundstein/commons'
-
-// import { getHostCertificates } from '@grundstein/commons/lib.mjs'
+import { createServer } from '@grundstein/commons/lib.mjs'
 
 import handler from './handler.mjs'
 
@@ -11,16 +8,8 @@ export const run = async (config = {}) => {
   try {
     config.startTime = log.hrtime()
 
-    const options = {} // await getHostCertificates(config)
-
     const worker = await handler(config)
-    const server = http.createServer(options, worker)
-
-    const clientError = middleware.clientError(config)
-    server.on('clientError', clientError)
-
-    const listener = middleware.listener(config)
-    server.listen(config.port, config.host, listener)
+    const server = await createServer(config, worker)
   } catch (e) {
     log.error(e)
     process.exit(1)
