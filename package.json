@@ -35,8 +35,8 @@
     "@grundstein/file-store": "github:grundstein/file-store"
   },
   "devDependencies": {
-    "@magic/format": "0.0.9",
-    "@magic/test": "0.1.43"
+    "@magic/format": "0.0.13",
+    "@magic/test": "0.1.52"
   },
   "keywords": [
     "grundstein",
