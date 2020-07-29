@@ -25,7 +25,7 @@ export const handler = async config => {
 
     req = enhanceRequest(req)
 
-    const hostname = req.headers['x-forwarded-for']
+    const hostname = getHostname(req)
 
     formatLog(req, res, { time: startTime, type: `gms: request host ${hostname}` })
 
