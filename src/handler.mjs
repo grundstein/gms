@@ -21,13 +21,13 @@ export const handler = async config => {
   let lastRefresh = new Date().getTime()
 
   return async (req, res) => {
-    const startTime = log.hrtime()
+    const time = log.hrtime()
 
     req = enhanceRequest(req)
 
     const hostname = getHostname(req)
 
-    formatLog(req, res, { time: startTime, type: `gms: request host ${hostname}` })
+    formatLog(req, res, { time, type: `gms: request host ${hostname}` })
 
     let { url } = req
     url = url.split('?')[0]
@@ -55,7 +55,7 @@ export const handler = async config => {
 
     const currentTime = new Date().getTime()
     if (currentTime > lastRefresh + cacheRefreshDelay) {
-      formatLog(req, res, { time: startTime, type: 'gms: refresh store' })
+      formatLog(req, res, { time, type: 'gms: refresh store' })
       store = await fileStore(dir)
       lastRefresh = currentTime
     }
