@@ -9,7 +9,7 @@ export const run = async (config = {}) => {
     config.startTime = log.hrtime()
 
     const worker = await handler(config)
-    const server = await createServer(config, worker)
+    await createServer(config, worker)
   } catch (e) {
     log.error(e)
     process.exit(1)
